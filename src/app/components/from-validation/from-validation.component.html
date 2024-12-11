@@ -1,0 +1,6 @@
+<div *ngIf="control.invalid && (control.touched || control.dirty)" class="alert alert-danger">
+    <div *ngIf="control.errors!['required']">this field is required</div>
+    <div *ngIf="control.errors!['minlength']">this field must have at least {{control.errors!['minlength']!['requiredLength']}} characters</div>
+    <div *ngIf="control.errors!['maxlength']">the max length is {{control.errors!['maxlength']!['requiredLength']}}</div>
+    <div *ngIf="control.errors!['pattern']">this field is invalid</div>
+</div>

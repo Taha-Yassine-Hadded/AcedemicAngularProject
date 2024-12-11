@@ -1,0 +1,54 @@
+
+<!--<input class="form-control" [formControl]="name">
+
+<input type="submit" (click)="submit()">-->
+
+<div class="container">
+    <div class="row">
+<form [formGroup]="product">
+    <div class="mb-3">
+    <label>Name :</label>
+    <input class="form-control" formControlName="name">
+    <div *ngIf="name!.invalid &&
+        (name!.touched ||
+         name!.dirty)">
+    Name is required !
+    </div>
+</div>
+    <div class="mb-3">
+        <label>Image :</label>
+        <input class="form-control" formControlName="image">
+        
+    </div>
+    <div class="mb-3">
+        <label>Description :</label>
+        <input class="form-control" formControlName="description">
+    </div>
+    <div class="mb-3">
+        <label>Price :</label>
+        <input class="form-control" formControlName="price">
+    </div>
+    <!--<div class="mb-3" formGroupName="brand">
+        <label>Brand Name :</label>
+        <input class="form-control" formControlName="name">
+        <label>Brand Logo :</label>
+        <input class="form-control" formControlName="logo">
+    </div>-->
+    <div class="mb-3">
+        <label>Promotion :</label>
+        <input class="form-control" formControlName="promotion">
+    </div>
+    <!--<div class="mb-3" formArrayName="tags">
+        <label>Tags :</label>
+        <div *ngFor="let t of tags">
+            <input class="form-control" [formControl]="t">
+        </div>
+        <button (click)="addTag()">+</button>
+    </div>-->
+    <div class="mb-3">
+        <input type="submit" class="btn btn-success" value="Add product" (click)="submit()">
+    </div>
+</form>
+A: {{a}}
+</div>
+</div>

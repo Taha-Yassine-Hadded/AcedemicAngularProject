@@ -1,0 +1,13 @@
+<div class="container">
+    <div class="row">
+      Price :  <input class="form-control" name="searchPrice" [(ngModel)]="price">
+      <div class="alert alert-danger" *ngIf="listProducts.length == 0">
+        Aucun produit !
+      </div>
+        <div *ngFor="let element of listProducts | searchPrice:price" class="col-md-4" style="margin-bottom: 20px;">
+            <app-card (l)="likeParent($event)" [id]="element.id" [title]="element.name" [image]="element.image" [price]="element.price" [nb_likes]="element.nb_likes"></app-card>
+            <!-- </div> -->
+        </div>
+    </div>
+</div>
+
