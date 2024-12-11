@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {AuthentificationService} from "../../services/AuthentificationService/authentification.service";
 
 @Component({
   selector: 'app-navbar',
@@ -7,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class NavbarComponent {
   isAdmin: boolean = false;
+  constructor(private auth : AuthentificationService) {
+  }
+
+  logout()  {
+    this.auth.logout()
+  }
 }

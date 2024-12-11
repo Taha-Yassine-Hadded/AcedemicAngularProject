@@ -9,8 +9,8 @@ import { Router} from "@angular/router";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit{
+  errorMessage: string = '';
   user! : FormGroup;
-
   constructor(private fb : FormBuilder, private authService: AuthentificationService, private router : Router){
   }
 
@@ -19,15 +19,20 @@ export class LoginComponent implements OnInit{
       email : ["", [Validators.email, Validators.required]],
       password : ["", [Validators.required]]
     })
+    this.authService.isLogged() && this.router.navigate(['/home'])
   }
 
   login(): void {
     console.log(this.user)
-    this.authService.singin(this.user.value).subscribe(
-      (response) => {
-        localStorage.setItem('access_token', response.accessToken);
-        localStorage.setItem('role', response.user.role);
-        this.router.navigate(['/home'])
+    this.authService.singin(this.user.value).subscribe({
+        next: (data: any) => {
+          localStorage.setItem('access_token', data.accessToken);
+          localStorage.setItem('role', data.user.role);
+          this.router.navigate(['/home'])
+        },
+        error: (e: any) => {
+          this.errorMessage = e.error;
+        }
       }
     );
   }

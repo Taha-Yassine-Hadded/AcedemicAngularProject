@@ -18,31 +18,36 @@ import { CardComponent } from './components/card/card.component';
 import { FromValidationComponent } from "./components/from-validation/from-validation.component";
 import {HttpClientModule} from "@angular/common/http";
 import { LoginComponent } from './components/login/login.component';
+import {authGuard} from "./guards/auth.guard";
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent },
-  { path: 'category/add', component: FormCategoryComponent },
+  { path: 'home', component: HomeComponent , canActivate : [authGuard]},
+  { path: 'category/add', component: FormCategoryComponent, canActivate : [authGuard] },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'login', component : LoginComponent },
   {
     path: 'products', loadChildren:
       () => import('./features/product/product.module')
       .then(m => m.ProductModule)
+    , canActivate : [authGuard]
   },
   {
     path: 'contact', loadChildren:
       () => import('./features/contact/contact.module')
     .then(m=>m.ContactModule)
+    , canActivate : [authGuard]
   },
   {
     path: 'apropos', loadChildren:
       () => import('./features/apropos/apropos.module')
     .then(m=>m.AproposModule)
+    , canActivate : [authGuard]
   },
   {
     path: 'profile', loadChildren:
       () => import('./features/profile/profile.module')
     .then(m=>m.ProfileModule)
+    , canActivate : [authGuard]
   },
   { path :'**' ,component:NotFoundComponent}
 ]
